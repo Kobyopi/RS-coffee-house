@@ -26,6 +26,7 @@
         </header>
 
         <main class="main">
+            <!-- Enjoy Hero Section -->
             <section class="enjoy" id="enjoy">
                 <div class="container enjoy-container">
                     <div class="enjoy-content">
@@ -47,7 +48,78 @@
                 </div>
             </section>
 
-            
+            <!-- Favorites Coffee Section-->
+             <section class="favorites" id="favorites">
+                <div class="container favorites-container">
+                    <h2 class="section-title">Choose your <span class="highlight">favorite</span> coffee</h2>
+
+                    <div class="carousel">
+                        <button class="carousel-btn carousel-btn-left" aria-label="Previous slide">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                <path d="M37.5 45L22.5 30L37.5 15" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track">
+                                <div class="carousel-slide active">
+                                    <div class="coffee-card">
+                                        <img src="../assets/coffee-slider-1.png" alt="S'mores Frappuccino" class="coffee-img">
+                                        <div class="coffee-info">
+                                            <h3 class="coffee-name">S'mores Frappuccino</h3>
+                                            <p class="coffee-description">
+                                                This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.
+                                            </p>
+                                            <p class="coffee-price">$5.50</p>
+                                        </div>
+                                    </div>
+                                    <div class="coffee-card">
+                                        <img src="../assets/coffee-slider-2.png" alt="Caramel Macchiato" class="coffee-img">
+                                        <div class="coffee-info">
+                                            <h3 class="coffee-name">Caramel Macchiato</h3>
+                                            <p class="coffee-description">
+                                                Fragnant and unique classic espresso with rich caramel-peanut syrup, with cream under whipped thick foam.
+                                            </p>
+                                            <p class="coffee-price">$5.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="coffee-card">
+                                        <img src="../assets/coffee-slider-3.png" alt="Ice coffee" class="coffee-img">
+                                        <div class="coffee-info">
+                                            <h3 class="coffee-name">Ice coffee</h3>
+                                            <p class="coffee-description">
+                                                A popular summer drink that tones and invigorates. Prepared from coffee, milk and ice.
+                                            </p>
+                                            <p class="coffee-price">$4.50</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <button class="carousel-btn carousel-btn-right" aria-label="Next slide">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                                <path d="M22.5 15L37.5 30L22.5 45" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="carousel-indicators">
+                        <div class="indicator active" data-slide="0">
+                            <div class="indicator-progress"></div>
+                        </div>
+                        <div class="indicator" data-slide="1">
+                            <div class="indicator-progress"></div>
+                        </div>
+                        <div class="indicator" data-slide="2">
+                            <div class="indicator-progress"></div>
+                        </div>
+                    </div>
+                </div>
+             </section>
+
+             
         </main>
     </body>
 </html>
