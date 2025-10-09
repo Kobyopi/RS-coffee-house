@@ -211,3 +211,30 @@ ul {
     cursor: default;
     pointer-events: none;
 }
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 16px 32px;
+    background-color: var(--color-bg-container);
+    color: var(--color-text-light);
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn:hover {
+    background-color: var(--color-bg-backdrop);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn.disabled {
+    background-color: var(--color-border-light);
+    color: var(--color-text-dark);
+    cursor: default;
+    pointer-events: none;
+}
