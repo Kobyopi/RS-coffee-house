@@ -127,5 +127,85 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Modal -->
+        <div class="modal" id="productModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="modal-product">
+                    <img src="" alt="" class="modal-img" id="modalImg">
+                    <div class="modal-info">
+                        <h3 class="modal-title" id="modalTitle"></h3>
+                        <p class="modal-description" id="modalDescription"></p>
+
+                        <div class="modal-options">
+                            <div class="modal-option-group">
+                                <h4 class="modal-option-title">Size</h4>
+                                <div class="modal-sizes">
+                                    <button class="size-btn active" data-size="S" data-price="0">
+                                        <svg width="30" height="30" veiwBox="0 0 30 30" fill="none">
+                                            <circle cx="15" cy="15" r="12" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                        <span>S</span>
+                                    </button>
+                                    <button class="size-btn" data-size="M" data-price="0.50">
+                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                            <circle cx="15" cy="15" r="14" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                        <span>M</span>
+                                    </button>
+                                    <button class="size-btn" data-size="L" data-price="1.00">
+                                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                            <circle cx="15" cy="15" r="16" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                        <span>L</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="modal-option-group">
+                                <h4 class="modal-option-title">Additives</h4>
+                                <div class="modal-additives">
+                                    <button class="additive-btn" data-additive="1" data-price="0.50">
+                                        <span class="additive-num">1</span>
+                                        <span class="additive-name">Sugar</span>
+                                    </button>
+                                    <button class="additive-btn" data-additive="2" data-price="0.50">
+                                        <span class="additive-num">2</span>
+                                        <span class="additive-name">Cinnamon</span>
+                                    </button>
+                                    <button class="additive-btn" data-additive="3" data-price="0.50">
+                                        <span class="additive-num">3</span>
+                                        <span class="additive-name">Syrup</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-total">
+                            <span class="modal-total-label">Total:</span>
+                            <span class="modal-total-price" id="modalTotalPrice">$0.00</span>
+                        </div>
+
+                        <div class="modal-info-text">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M8 8V12M8 4h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            <span>The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</span>
+                        </div>
+
+                        <button class="modal-close-btn btn">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
     </body>
 </html>
