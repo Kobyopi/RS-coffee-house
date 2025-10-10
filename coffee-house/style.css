@@ -293,3 +293,161 @@ ul {
     object-fit: cover;
     border-radius: 24px;
 }
+
+/* Favorites Section */
+.favorites {
+    padding: var(--section-padding);
+    background-color: var(--color-bg-body);
+}
+
+.favorites-container {
+    text-align: center;
+}
+
+.section-title {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 60px;
+    color: var(--color-text-dark);
+}
+
+.highlight {
+    color: var(--color-text-accent);
+    font-style: italic;
+}
+
+.carousel {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.coffee-card {
+    background-color: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coffee-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.coffee-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.coffee-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.coffee-name {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--color-text-dark);
+}
+
+.coffee-description {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    color: var(--color-text-dark);
+}
+
+.coffee-price {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-dark);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background-color: var(--color-bg-container);
+    color: var(--color-text-light);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn-left {
+    left: -30px;
+}
+
+.carousel-btn-right {
+    right: -30px;
+}
+
+.carousel-indicators {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+.indicator {
+    width: 100px;
+    height: 4px;
+    background-color: var(--color-border-light);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.indicator-progress {
+    width: 0;
+    height: 100%;
+    background-color: var(--color-text-dark);
+    transition: width 0.1s linear;
+}
+
+.indicator.active .indicator-progress {
+    animation: progress 5s linear forwars;
+}
+
+.indicator.active.paused .indicator-progress {
+    animation-play-state: paused;
+}
+
+@keyframes progress {
+    to {
+        width: 100%;
+    }
+}
