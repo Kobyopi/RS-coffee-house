@@ -964,3 +964,78 @@ ul {
 .modal-close-btn {
     width: 100%;
 }
+
+/* Responsive for 768px and below */
+@media (max-width: 768px) {
+    .nav,
+    .menu-btn {
+        display: none;
+    }
+
+    .burger-icon {
+        display: flex;
+    }
+
+    .enjoy-container,
+    .about-content,
+    .app-container {
+        flex-direction: column;
+    }
+
+    .carousel-slide {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .section-title {
+        font-size: 42px;
+    }
+    .enjoy-title {
+        font-size: 48px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 380px) {
+    .carousel-slide {
+        grid-template-columns: 1fr;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about0images {
+        grid-template-columns: 1fr;
+    }
+
+    .app-buttons {
+        flex-direction: column;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .enjoy-title {
+        font-size: 36px;
+    }
+
+    .modal-product {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .modal-img {
+        width: 100%;
+        height: auto;
+    }
+}
