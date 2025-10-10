@@ -238,3 +238,58 @@ ul {
     cursor: default;
     pointer-events: none;
 }
+
+/* Enjoy Section */
+.enjoy {
+    padding: var(--section-padding);
+    background-color: var(--color-bg-body);
+}
+
+.enjoy-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.enjoy-content {
+    flex: 1;
+}
+
+.enjoy-title {
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    color: var(--color-text-dark);
+}
+
+.enjoy-title-small {
+    display: block;
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-text-accent);
+    margin-bottom: 8px;
+}
+
+.enjoy-text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 32px;
+    color: var(--color-text-dark);
+}
+
+.enjoy-media {
+    flex: 1;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.enjoy-video,
+.enjoy-img {
+    width: 100%;
+    height: 560px;
+    object-fit: cover;
+    border-radius: 24px;
+}
