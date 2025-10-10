@@ -307,3 +307,102 @@ function handleSwipe() {
 if (carousel) {
     startAutoPlay();
 }
+
+// Menu Page
+const menuTabs = document.querySelectorAll('.menu-tab');
+const productsGrid = document.getElementById('productsGrid');
+const loadMoreBtn = document.getElementById('loadMoreBtn');
+const modal = document.getElementById('productModal');
+
+let currentCategory = 'coffee';
+let displayedProducts = [];
+let showingAll = true;
+
+function renderProducts(category) {
+    currentCategory = category;
+    const products = productsData[category];
+    displayedProducts = products;
+    
+    if (!productsGrid) return;
+    
+    productsGrid.innerHTML = '';
+    
+    // Check screen width
+    const isMobile = window.innerWidth <= 768;
+    const productsToShow = isMobile && products.length > 4 ? products.slice(0, 4) : products;
+    
+    productsToShow.forEach(product => {
+        const productCard = createProductCard(product);
+        productsGrid.appendChild(productCard);
+    });
+    
+    // Show/hide Load More button
+    if (loadMoreBtn) {
+        if (isMobile && products.length > 4 && productsToShow.length === 4) {
+            loadMoreBtn.style.display = 'block';
+            showingAll = false;
+        } else {
+            loadMoreBtn.style.display = 'none';
+            showingAll = true;
+        }
+    }
+}
+
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="product-img">
+        <div class="product-info">
+            <h3 class="product-name">${product.name}</h3>
+            <p class="product-description">${product.description}</p>
+            <p class="product-price">$${product.price.toFixed(2)}</p>
+        </div>
+    `;
+    
+    card.addEventListener('click', () => {
+        openModal(product);
+    });
+    
+    return card;
+}
+
+if (menuTabs) {
+    menuTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            menuTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const category = tab.dataset.category;
+            renderProducts(category);
+        });
+    });
+}
+
+if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', () => {
+        const products = productsData[currentCategory];
+        productsGrid.innerHTML = '';
+        
+        products.forEach(product => {
+            const productCard = createProductCard(product);
+            productsGrid.appendChild(productCard);
+        });
+        
+        loadMoreBtn.style.display = 'none';
+        showingAll = true;
+    });
+}
+
+// Handle window resize for products display
+window.addEventListener('resize', () => {
+    if (productsGrid) {
+        const isMobile = window.innerWidth <= 768;
+        const products = productsData[currentCategory];
+        
+        if (isMobile && products.length > 4 && showingAll) {
+            renderProducts(currentCategory);
+        } else if (!isMobile && !showingAll) {
+            renderProducts(currentCategory);
+        }
+    }
+});
