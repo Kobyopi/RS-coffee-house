@@ -146,4 +146,36 @@ const productsData = {
             image: '../assets/dessert-8.png'
         }
     ]
+};
+
+// Burger Menu
+const burgerIcon = document.querySelector('.burger-icon');
+const burgerMenu = document.querySelector('.burger-menu');
+const burgerLinks = document.querySelectorAll('.burger-link');
+
+if (burgerIcon) {
+    burgerIcon.addEventListener('click', () => {
+        burgerIcon.classList.toggle('active');
+        burgerMenu.classList.toggle('active');
+        document.body.classList.toggle('burger-open');
+    });
 }
+
+if (burgerLinks) {
+    burgerLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            burgerIcon.classList.remove('active');
+            burgerMenu.classList.remove('active');
+            document.body.classList.remove('burger-open');
+        });
+    });
+}
+
+// Close burger menu when window is resized above 768px
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        burgerIcon.classList.remove('active');
+        burgerMenu.classList.remove('active');
+        document.body.classList.remove('burger-open');
+    }
+});
