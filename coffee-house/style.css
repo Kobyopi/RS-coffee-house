@@ -73,6 +73,7 @@ ul {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Update header container to space items properly */
 .header-container {
     display: flex;
     align-items: center;
@@ -80,23 +81,11 @@ ul {
     gap: 40px;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    transition: opacity 0.3s ease;
-}
-
-.logo:hover {
-    opacity: 0.8;
-}
-
-.logo-img {
-    height: 60px;
-    width: auto;
-}
-
+/* Update nav to be centered */
 .nav {
     flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .nav-list {
@@ -105,7 +94,9 @@ ul {
     align-items: center;
 }
 
-.nav-link {
+/* Reduce nav link font size */
+.nav-link,
+.burger-link {
     font-size: 16px;
     font-weight: 600;
     color: var(--color-text-dark);
