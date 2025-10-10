@@ -492,3 +492,84 @@ ul {
     text-align: left;
     color: var(--color-text-dark);
 }
+
+/* Mobile App Section */
+.app {
+    padding: var(--section-padding);
+    background-color: var(--color-bg-body);
+}
+
+.app-container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.app-content {
+    flex: 1;
+}
+
+.app-title {
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.app-description {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    color: var(--color-text-dark);
+}
+
+.app-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.app-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    background-color: var(--color-bg-backdrop);
+    color: var(--color-text-light);
+    border-radius: 100px;
+    transition: all 0.3s ease;
+}
+
+.app-link:hover {
+    background-color: var(--color-bg-container);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.app-icon {
+    width: 36px;
+    height: 36px;
+    color: var(--color-text-light);
+}
+
+.app-link-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.app-link-small {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.app-link-large {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.app-image {
+    flex: 1;
+}
+
+.app-img {
+    width: 100%;
+    height: auto;
+}
