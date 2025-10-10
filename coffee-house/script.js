@@ -406,3 +406,107 @@ window.addEventListener('resize', () => {
         }
     }
 });
+
+// Modal
+function openModal(product) {
+    if (!modal) return;
+    
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalTotalPrice = document.getElementById('modalTotalPrice');
+    
+    modalImg.src = product.image;
+    modalImg.alt = product.name;
+    modalTitle.textContent = product.name;
+    modalDescription.textContent = product.description;
+    
+    // Reset options
+    document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector('.size-btn[data-size="S"]').classList.add('active');
+    
+    document.querySelectorAll('.additive-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Set initial price
+    updateModalPrice(product.price);
+    
+    modal.classList.add('active');
+    document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+}
+
+function updateModalPrice(basePrice) {
+    let totalPrice = basePrice;
+    
+    // Add size price
+    const activeSize = document.querySelector('.size-btn.active');
+    if (activeSize) {
+        totalPrice += parseFloat(activeSize.dataset.price);
+    }
+    
+    // Add additives price
+    const activeAdditives = document.querySelectorAll('.additive-btn.active');
+    activeAdditives.forEach(additive => {
+        totalPrice += parseFloat(additive.dataset.price);
+    });
+    
+    const modalTotalPrice = document.getElementById('modalTotalPrice');
+    if (modalTotalPrice) {
+        modalTotalPrice.textContent = `$${totalPrice.toFixed(2)}`;
+    }
+}
+
+// Modal event listeners
+if (modal) {
+    const modalOverlay = modal.querySelector('.modal-overlay');
+    const modalClose = modal.querySelector('.modal-close');
+    const modalCloseBtn = modal.querySelector('.modal-close-btn');
+    
+    modalOverlay.addEventListener('click', closeModal);
+    modalClose.addEventListener('click', closeModal);
+    modalCloseBtn.addEventListener('click', closeModal);
+    
+    // Size buttons
+    document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Get base price from modal title
+            const product = displayedProducts.find(p => p.name === document.getElementById('modalTitle').textContent);
+            if (product) {
+                updateModalPrice(product.price);
+            }
+        });
+    });
+    
+    // Additive buttons
+    document.querySelectorAll('.additive-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            btn.classList.toggle('active');
+            
+            // Get base price from modal title
+            const product = displayedProducts.find(p => p.name === document.getElementById('modalTitle').textContent);
+            if (product) {
+                updateModalPrice(product.price);
+            }
+        });
+    });
+}
+
+// Initialize menu page
+if (productsGrid) {
+    renderProducts('coffee');
+}
