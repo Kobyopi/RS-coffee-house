@@ -530,3 +530,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Video
+const video = document.querySelector('.enjoy-video');
+if (video) {
+    // If video source is empty, show fallback image
+    video.addEventListener('error', function() {
+        this.style.display = 'none';
+        const img = this.nextElementSibling;
+        if (img && img.tagName === 'IMG') {
+            img.style.display = 'block';
+        }
+    });
+}
