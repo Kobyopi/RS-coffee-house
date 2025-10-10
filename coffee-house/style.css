@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -70,7 +72,6 @@ ul {
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Update header container to space items properly */
@@ -106,12 +107,14 @@ ul {
 
 .nav-list {
     display: flex;
-    gap: 40px;
+    gap: 42px;
     align-items: center;
+    margin-left: 80px;
+    margin-bottom: 7px;
 }
 
 .nav-link {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: var(--color-text-dark);
     position: relative;
@@ -245,20 +248,49 @@ ul {
     pointer-events: none;
 }
 
+/* Header Menu Button (with icon and separator) */
+.header-menu-btn {
+    background-color: transparent;
+    color: var(--color-text-dark);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    margin-left: 20px;  /* Pushes button to the right */
+}
+
+.header-menu-btn:hover {
+    background-color: transparent;
+    color: var(--color-text-accent);
+    transform: none;
+    box-shadow: none;
+}
+
+/* Hero Section Menu Button (standard button style) */
+.hero-menu-btn {
+    /* Uses default .btn styles */
+}
+
+/* Enjoy Section */
 /* Enjoy Section */
 .enjoy {
-    padding: var(--section-padding);
     background-color: var(--color-bg-body);
 }
 
 .enjoy-container {
+    position: relative;
+    min-height: 640px;  /* Reduced from 100vh to 600px */
     display: flex;
     align-items: center;
-    gap: 60px;
+    justify-content: flex-start;
 }
 
 .enjoy-content {
-    flex: 1;
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    padding: 40px;
 }
 
 .enjoy-title {
@@ -286,18 +318,22 @@ ul {
 }
 
 .enjoy-media {
-    flex: 1;
-    position: relative;
-    border-radius: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 40px;
     overflow: hidden;
 }
 
 .enjoy-video,
 .enjoy-img {
     width: 100%;
-    height: 560px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 24px;
+    border-radius: 40px;
 }
 
 /* Favorites Section */
