@@ -253,6 +253,7 @@ if (indicators) {
     });
 }
 
+if (carousel) {
     // Touch events for mobile
     carousel.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
@@ -262,6 +263,7 @@ if (indicators) {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
     });
+}
 
 function handleSwipe() {
     const swipeThreshold = 50;
@@ -393,6 +395,39 @@ function openModal(product) {
     modalImg.alt = product.name;
     modalTitle.textContent = product.name;
     modalDescription.textContent = product.description;
+
+    const category = currentCategory;
+
+    const sizeButtons = document.querySelectorAll('.size-btn');
+    if (category === 'dessert') {
+        // Update sizes for dessert (grams instead of ml)
+        sizeButtons[0].querySelector('.size-volume').textContent = '50 g';
+        sizeButtons[1].querySelector('.size-volume').textContent = '100 g';
+        sizeButtons[2].querySelector('.size-volume').textContent = '200 g';
+    } else {
+        // Default sizes for coffee and tea (ml)
+        sizeButtons[0].querySelector('.size-volume').textContent = '200 ml';
+        sizeButtons[1].querySelector('.size-volume').textContent = '300 ml';
+        sizeButtons[2].querySelector('.size-volume').textContent = '400 ml';
+    }
+
+    const additiveButtons = document.querySelectorAll('.additive-btn');
+    if (category === 'tea') {
+        // Additives for tea: Sugar, Lemon, Syrup
+        additiveButtons[0].querySelector('.additive-name').textContent = 'Sugar';
+        additiveButtons[1].querySelector('.additive-name').textContent = 'Lemon';
+        additiveButtons[2].querySelector('.additive-name').textContent = 'Syrup';
+    } else if (category === 'dessert') {
+        // Additives for dessert: Berries, Nuts, Jam
+        additiveButtons[0].querySelector('.additive-name').textContent = 'Berries';
+        additiveButtons[1].querySelector('.additive-name').textContent = 'Nuts';
+        additiveButtons[2].querySelector('.additive-name').textContent = 'Jam';
+    } else {
+        // Default additives for coffee: Sugar, Cinnamon, Syrup
+        additiveButtons[0].querySelector('.additive-name').textContent = 'Sugar';
+        additiveButtons[1].querySelector('.additive-name').textContent = 'Cinnamon';
+        additiveButtons[2].querySelector('.additive-name').textContent = 'Syrup';
+    }
     
     // Reset options
     document.querySelectorAll('.size-btn').forEach(btn => {
@@ -407,13 +442,13 @@ function openModal(product) {
     // Set initial price
     updateModalPrice(product.price);
     
-    modal.classList.add('active');
+    modal.classList.add('modal-active');
     document.body.classList.add('modal-open');
 }
 
 function closeModal() {
     if (modal) {
-        modal.classList.remove('active');
+        modal.classList.remove('modal-active');
         document.body.classList.remove('modal-open');
     }
 }
