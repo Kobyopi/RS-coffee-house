@@ -194,21 +194,18 @@ let touchEndX = 0;
 
 function updateCarousel() {
     if (carouselTrack) {
-        carouselTrack.style.transform = 'translateX(-${currentSlide * 100}%)';
+        carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
 
         indicators.forEach((indicator, index) => {
-            indicators.classList.toggle('active', index === currentSlide);
-            const progress = indicators.querySelector('.indicator-progress');
+            indicator.classList.toggle('active', index === currentSlide);
+            const progress = indicator.querySelector('.indicator-progress');
+            // Instantly show/hide progress without animation
             if (index === currentSlide) {
-                progress.style.width = '0';
-                setTimeout(() => {
-                    progress.style.animation = 'none';
-                    progress.offsetHeight;
-                    progress.style.animation = 'progress 5s linear forwards';
-                }, 10);
+                progress.style.width = '100%';  // ✓ Show full immediately
+                progress.style.animation = 'none';  // ✓ Disable animation
             } else {
-                progress.style.width = '0';
-                progress.style.animation = 'none';
+                progress.style.width = '0';  // ✓ Hide immediately
+                progress.style.animation = 'none';  // ✓ Disable animation
             }
         });
     }
@@ -238,14 +235,12 @@ function stopAutoPlay() {
 if (carouselBtnRight) {
     carouselBtnRight.addEventListener('click', () => {
         nextSlide();
-        startAutoPlay();
     });
 }
 
 if (carouselBtnLeft) {
     carouselBtnLeft.addEventListener('click', () => {
         prevSlide();
-        startAutoPlay();
     });
 }
 
@@ -254,41 +249,19 @@ if (indicators) {
         indicator.addEventListener('click', () => {
             currentSlide = index;
             updateCarousel();
-            startAutoPlay();
         });
     });
 }
 
-// Pause on hover
-if (carousel) {
-    carousel.addEventListener('mouseenter', () => {
-        stopAutoPlay();
-        const activeIndicator = document.querySelector('.indicator.active');
-        if (activeIndicator) {
-            activeIndicator.classList.add('paused');
-        }
-    });
-    
-    carousel.addEventListener('mouseleave', () => {
-        const activeIndicator = document.querySelector('.indicator.active');
-        if (activeIndicator) {
-            activeIndicator.classList.remove('paused');
-        }
-        startAutoPlay();
-    });
-
     // Touch events for mobile
     carousel.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
-        stopAutoPlay();
     });
 
     carousel.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
-        startAutoPlay();
     });
-}
 
 function handleSwipe() {
     const swipeThreshold = 50;
@@ -305,7 +278,7 @@ function handleSwipe() {
 
 // Start autoplay on page load
 if (carousel) {
-    startAutoPlay();
+    updateCarousel();
 }
 
 // Menu Page

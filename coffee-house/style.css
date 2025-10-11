@@ -80,6 +80,7 @@ ul {
     align-items: center;
     justify-content: space-between;
     gap: 40px;
+    padding-right: 0;
 }
 
 .logo {
@@ -114,7 +115,7 @@ ul {
 }
 
 .nav-link {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--color-text-dark);
     position: relative;
@@ -257,22 +258,45 @@ ul {
     align-items: center;
     gap: 8px;
     position: relative;
-    margin-left: 20px;  /* Pushes button to the right */
+    padding-right: 0;
+    margin-left: 40px;
+}
+
+.header-menu-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-text-dark);
+    transition: width 0.3s ease;
 }
 
 .header-menu-btn:hover {
     background-color: transparent;
-    color: var(--color-text-accent);
     transform: none;
     box-shadow: none;
 }
 
-/* Hero Section Menu Button (standard button style) */
-.hero-menu-btn {
-    /* Uses default .btn styles */
+.header-menu-btn:hover::after {
+    width: 100%;
 }
 
-/* Enjoy Section */
+.hero-menu-btn {
+    background-color: var(--color-text-light);  /* Light background */
+    color: var(--color-text-dark);  /* Dark text for contrast */
+    padding: 17px 76px;  /* Increased width */
+    border: 2px solid var(--color-text-light);
+    margin-left: 20px;
+}
+
+.hero-menu-btn:hover {
+    background-color: var(--color-bg-container);
+    color: var(--color-text-light);
+    border-color: var(--color-bg-container);
+}
+
 /* Enjoy Section */
 .enjoy {
     background-color: var(--color-bg-body);
@@ -289,7 +313,7 @@ ul {
 .enjoy-content {
     position: relative;
     z-index: 10;
-    max-width: 600px;
+    max-width: 700px;
     padding: 40px;
 }
 
@@ -297,24 +321,36 @@ ul {
     font-size: 72px;
     font-weight: 600;
     line-height: 1.05;
-    margin-bottom: 24px;
+    margin-bottom: 45px;
+    margin-left: 19px;
     color: var(--color-text-dark);
+    display: flex;
+    flex-direction: column;
 }
 
-.enjoy-title-small {
+.enjoy-title-line1,
+.enjoy-title-line2,
+.enjoy-title-line3 {
     display: block;
-    font-size: 28px;
-    font-style: italic;
-    font-weight: 400;
+    color: var(--color-text-light);
+}
+
+.enjoy-title-highlight {
     color: var(--color-text-accent);
-    margin-bottom: 8px;
+    font-style: italic;
+}
+
+.enjoy-title-line1 {
+    color: var(--color-text-light);
 }
 
 .enjoy-text {
     font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 32px;
-    color: var(--color-text-dark);
+    font-weight: 400;
+    line-height: 150%;
+    margin-bottom: 38px;
+    margin-left: 20px;
+    color: var(--color-text-light);
 }
 
 .enjoy-media {
@@ -374,52 +410,40 @@ ul {
     transition: transform 0.5s ease;
 }
 
-.carousel-slide {
+.carousel-item {
     min-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 100px;
+    margin-top: -20px;
 }
 
-.coffee-card {
-    background-color: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.coffee-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.coffee-img {
-    width: 100%;
-    height: 280px;
+.carousel-item-img {
+    width: 480px;
+    height: 480px;
     object-fit: cover;
+    border-radius: 24px;
+    margin-bottom: 20px;
 }
 
-.coffee-info {
-    padding: 20px;
-    text-align: left;
-}
-
-.coffee-name {
+.carousel-item-name {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     color: var(--color-text-dark);
 }
 
-.coffee-description {
+.carousel-item-description {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 16px;
     color: var(--color-text-dark);
+    max-width: 600px;
 }
 
-.coffee-price {
+.carousel-item-price {
     font-size: 24px;
     font-weight: 600;
     color: var(--color-text-dark);
@@ -427,9 +451,10 @@ ul {
 
 .carousel-btn {
     position: absolute;
-    top: 50%;
+    top: 45%;  /* Moved up from 50% */
     transform: translateY(-50%);
-    background-color: #fff;
+    background-color: transparent;  /* Removed white background */
+    border: 1px solid var(--color-text-dark);  /* Black outline */
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -438,33 +463,35 @@ ul {
     justify-content: center;
     color: var(--color-text-dark);
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 10;
 }
 
 .carousel-btn:hover {
-    background-color: var(--color-bg-container);
-    color: var(--color-text-light);
+    background-color: var(--color-bg-container);  /* Dark background on hover */
+    color: var(--color-text-light);  /* Light arrow on hover */
     transform: translateY(-50%) scale(1.1);
 }
 
 .carousel-btn-left {
-    left: -30px;
+    margin-top: 20px;
+    left: -35px;
 }
 
 .carousel-btn-right {
-    right: -30px;
+    margin-top: 20px;
+    right: -35px;
 }
 
 .carousel-indicators {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     justify-content: center;
     align-items: center;
+    margin-top: -5px;
 }
 
 .indicator {
-    width: 100px;
+    width: 40px;
     height: 4px;
     background-color: var(--color-border-light);
     border-radius: 2px;
@@ -496,12 +523,14 @@ ul {
 
 /* About Section */
 .about {
-    padding: var(--section-padding);
     background-color: var(--color-bg-body);
+    padding: 0;
 }
 
 .about-container {
     text-align: center;
+    max-width: 1440px;
+    padding: 0;
 }
 
 .about-content {
@@ -511,21 +540,56 @@ ul {
 }
 
 .about-images {
-    flex: 1;
+    flex: 0.97;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 360px 220px;
+    gap: 40px;
+    padding-left: 40px;
 }
 
 .about-img {
     width: 100%;
-    height: 280px;
+    height: 100%;
     object-fit: cover;
     border-radius: 16px;
 }
 
+/* Woman with sunglasses - top left */
+.about-img:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+    height: 165%;
+}
+
+/* Man with laptop - top right */
+.about-img:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+    height: 120%;
+}
+
+/* Coffee with lights - bottom left */
+.about-img:nth-child(3) {
+    grid-column: 1;
+    grid-row: 2;
+    height: 195%;
+    margin-top: 230px;
+}
+
+/* Couple - bottom right */
+.about-img:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 70px;
+    height: 270%;
+}
+
 .about-text {
     flex: 1;
+    text-align: left;
+    padding-left: 40px;
+    margin-bottom: 38px;
 }
 
 .about-description {
@@ -537,6 +601,7 @@ ul {
 
 /* Mobile App Section */
 .app {
+    margin-top: 450px;
     padding: var(--section-padding);
     background-color: var(--color-bg-body);
 }
@@ -545,56 +610,67 @@ ul {
     display: flex;
     align-items: center;
     gap: 80px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .app-content {
     flex: 1;
+    position: relative;
+    min-height: 400px;
 }
 
 .app-title {
     text-align: left;
-    margin-bottom: 24px;
+    position: relative;
+    top: 15px;
 }
 
 .app-description {
     font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 40px;
+    line-height: 1.4;
+    position: relative;
     color: var(--color-text-dark);
 }
 
 .app-buttons {
     display: flex;
     gap: 20px;
+    position: relative;
+    top: 36px;
 }
 
 .app-link {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 16px 24px;
-    background-color: var(--color-bg-backdrop);
-    color: var(--color-text-light);
+    padding: 9px 28px;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-text-dark);
     border-radius: 100px;
     transition: all 0.3s ease;
 }
 
 .app-link:hover {
     background-color: var(--color-bg-container);
+    color: var(--color-text-light);
+    border-color: var(--color-bg-dark);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .app-icon {
-    width: 36px;
-    height: 36px;
-    color: var(--color-text-light);
+    width: 40px;
+    height: 40px;
+    color: var(--color-text-dark);
 }
 
 .app-link-text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    text-align: left;
 }
 
 .app-link-small {
@@ -617,27 +693,71 @@ ul {
 }
 
 /* Footer Section */
-.footer {
-    padding: 60px 0;
-    background-color: var(--color-bg-container);
+.footer .container{
+    background-color: var(--color-bg-body);
     color: var(--color-text-light);
+    position: relative;
+    overflow: hidden;
+    max-width: 1440px;
+    height: 550px;
+    margin-top: -20px;
+}
+
+.footer-wrapper {
+    position: relative;
+}
+
+.footer-wrapper::before,
+.footer-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: var(--color-bg-container);
+    z-index: 0;
+}
+
+.footer-wrapper::before {
+    right: 100%;
+}
+
+.footer-wrapper::after {
+    left: 100%;
+}
+
+.footer-inner {
+    position: relative;
+    z-index: 1;
+    background-color: var(--color-bg-container);
+    border-radius: 40px;
+    padding: 100px 60px;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
-    gap: 60px;
+    align-items: flex-start;
+    gap: 80px;
 }
 
 .footer-info {
     flex: 1;
+    margin-left: 40px;
 }
 
 .footer-title {
-    font-size: 36px;
+    font-size: 50px;
     font-weight: 600;
-    line-height: 1.25;
-    margin-bottom: 32px;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    color: var(--color-text-light);
+}
+
+.footer-subtitle-italic {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--color-text-accent);
 }
 
 .footer-socials {
@@ -646,8 +766,8 @@ ul {
 }
 
 .social-link {
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 1px solid var(--color-text-light);
     display: flex;
@@ -664,12 +784,14 @@ ul {
 
 .footer-contacts {
     flex: 1;
+    margin-top: 30px;
 }
 
 .footer-subtitle {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 40px;
+    color: var(--color-text-light);
 }
 
 .footer-link,
@@ -677,9 +799,10 @@ ul {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     font-size: 16px;
     transition: color 0.3s ease;
+    color: var(--color-text-light);
 }
 
 .footer-link:hover {
