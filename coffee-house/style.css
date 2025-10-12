@@ -1190,60 +1190,273 @@ ul {
     border-color: var(--color-bg-container);
 }
 
-/* Responsive for 768px and below */
+/* Responsive for 768px and below (Tablet) */
 @media (max-width: 768px) {
+    /* Hide navigation, show burger menu */
     .nav,
-    .menu-btn {
+    .header-menu-btn {
         display: none;
     }
 
     .burger-icon {
         display: flex;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: transparent;
+        border: 1px solid var(--color-text-dark);
+        position: relative;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .burger-icon span {
+        position: absolute;
+        width: 50%;
+        height: 2px;
+        background-color: var(--color-text-dark);
+    }
+
+    .burger-icon span:first-child {
+        top: 14px;
+    }
+
+    .burger-icon span:last-child {
+        bottom: 14px;
+    }
+
+    .burger-icon.active {
+        background-color: transparent;
+    }
+
+    .burger-icon.active span:first-child {
+        transform: rotate(45deg);
+        top: 50%;
+        margin-top: -1px;
+    }
+
+    .burger-icon.active span:last-child {
+        transform: rotate(-45deg);
+        bottom: 50%;
+        margin-bottom: -1px;
+    }
+
+    /* Section spacing - add margins from screen edges */
+    .container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .burger-menu {
+        position: fixed;
+        top: 100px;
+        right: -100%;
+        width: 100%;
+        max-width: 100%;
+        height: calc(100vh - 100px);  /* Changed from 100vh */
+        background-color: var(--color-bg-body);
+        transition: right 0.4s ease;
+        z-index: 99;  /* Changed from 1000 to stay below header */
+        padding: 60px 40px;  /* Changed from padding: 0 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .burger-menu.active {
+        right: 0;
+    }
+
+    .burger-list {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .burger-link {
+        font-size: 32px;
+        font-weight: 600;
+        color: var(--color-text-dark);
+        transition: color 0.3s ease;
+    }
+
+    /* Ensure burger icon stays on top */
+    .burger-icon {
+        position: relative;
+        z-index: 1001;
+    }
+
+    /* Keep header visible when menu is open */
+    .header {
+        position: relative;
+        z-index: 1001;
     }
 
     .enjoy-container,
-    .about-content,
+    .favorites-container,
+    .about-container,
+    .app-container,
+    .menu-container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .footer-inner {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    .about-images {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .carousel-item {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    /* About section - hide second and third images */
+    .about-img:nth-child(2),
+    .about-img:nth-child(3) {
+        display: none;
+    }
+
+    .about-images {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* App section - text and buttons first, then image */
     .app-container {
         flex-direction: column;
     }
 
-    .carousel-slide {
+    .app-content {
+        min-height: auto;
+    }
+
+    /* Footer - title and socials first, then contacts */
+    .footer-content {
+        flex-direction: column-reverse;
+    }
+
+    /* Menu page - 2x2 grid */
+    .products-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
 
-    .products-grid {
+    /* Load more button visible */
+    .load-more-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .load-more-btn svg {
+        transition: transform 0.3s ease;
+    }
+
+    .load-more-btn.loading svg {
+        animation: rotate 1s linear infinite;
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Modal - 2 columns for sizes and additives */
+    .modal-sizes,
+    .modal-additives {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+    }
+
+    .size-btn:nth-child(3),
+    .additive-btn:nth-child(3) {
+        grid-column: 1 / -1;
     }
 
     .section-title {
         font-size: 42px;
     }
+
     .enjoy-title {
         font-size: 48px;
     }
 
-    .footer-content {
-        flex-direction: column;
+    .footer-wrapper::after {
+        display: none;
     }
 }
 
+/* Responsive for 380px and below (Mobile) */
 @media (max-width: 380px) {
-    .carousel-slide {
-        grid-template-columns: 1fr;
+    /* Burger menu remains */
+    .burger-icon {
+        display: flex;
     }
 
-    .products-grid {
-        grid-template-columns: 1fr;
+    /* Hide carousel buttons */
+    .carousel-btn {
+        display: none;
     }
 
+    /* Keep swipe functionality active via JS */
+    .carousel {
+        touch-action: pan-y;
+    }
+
+    /* About images */
     .about-images {
         grid-template-columns: 1fr;
     }
 
+    .about-img:nth-child(2),
+    .about-img:nth-child(3) {
+        display: none;
+    }
+
+    /* App buttons stack */
     .app-buttons {
         flex-direction: column;
+    }
+
+    /* Menu page - single column */
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Modal - hide image */
+    .modal-product {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .modal-img {
+        display: none;
+    }
+
+    /* Modal sizes and additives still 2 columns */
+    .modal-sizes,
+    .modal-additives {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .size-btn:nth-child(3),
+    .additive-btn:nth-child(3) {
+        grid-column: 1 / -1;
     }
 
     .section-title {
@@ -1254,13 +1467,11 @@ ul {
         font-size: 36px;
     }
 
-    .modal-product {
-        flex-direction: column;
-        padding: 20px;
+    .enjoy-container {
+        min-height: 500px;
     }
 
-    .modal-img {
-        width: 100%;
-        height: auto;
+    .enjoy-content {
+        padding: 20px;
     }
 }
