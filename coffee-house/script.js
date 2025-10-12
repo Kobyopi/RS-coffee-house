@@ -197,28 +197,35 @@ function updateCarousel() {
         carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
 
         indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === currentSlide);
+            indicator.classList.remove('active', 'paused');
             const progress = indicator.querySelector('.indicator-progress');
-            // Instantly show/hide progress without animation
+            
             if (index === currentSlide) {
-                progress.style.width = '100%';  // ✓ Show full immediately
-                progress.style.animation = 'none';  // ✓ Disable animation
+                indicator.classList.add('active');
+                // Reset and start animation
+                progress.style.animation = 'none';
+                progress.offsetHeight; // Trigger reflow
+                progress.style.animation = 'progress 5s linear forwards';
             } else {
-                progress.style.width = '0';  // ✓ Hide immediately
-                progress.style.animation = 'none';  // ✓ Disable animation
+                progress.style.animation = 'none';
+                progress.style.width = '0';
             }
         });
     }
 }
 
 function nextSlide() {
+    stopAutoPlay();
     currentSlide = (currentSlide + 1) % 3;
     updateCarousel();
+    startAutoPlay();
 }
 
 function prevSlide() {
+    stopAutoPlay();
     currentSlide = (currentSlide - 1 + 3) % 3;
     updateCarousel();
+    startAutoPlay();
 }
 
 function startAutoPlay() {
@@ -247,21 +254,42 @@ if (carouselBtnLeft) {
 if (indicators) {
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
+            stopAutoPlay();
             currentSlide = index;
             updateCarousel();
+            startAutoPlay();
         });
     });
 }
 
 if (carousel) {
+    // Hover pause functionality
+    carousel.addEventListener('mouseenter', () => {
+        const activeIndicator = document.querySelector('.indicator.active');
+        if (activeIndicator) {
+            activeIndicator.classList.add('paused');
+        }
+        stopAutoPlay();
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+        const activeIndicator = document.querySelector('.indicator.active');
+        if (activeIndicator) {
+            activeIndicator.classList.remove('paused');
+        }
+        startAutoPlay();
+    });
+
     // Touch events for mobile
     carousel.addEventListener('touchstart', (e) => {
         touchStartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
     });
 
     carousel.addEventListener('touchend', (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
+        startAutoPlay();
     });
 }
 
@@ -281,6 +309,7 @@ function handleSwipe() {
 // Start autoplay on page load
 if (carousel) {
     updateCarousel();
+    startAutoPlay();
 }
 
 // Menu Page
@@ -311,10 +340,17 @@ function renderProducts(category) {
         productsGrid.appendChild(productCard);
     });
     
-    // Show/hide Load More button
-    if (loadMoreBtn) {
+     // Show/hide Load More button
+     if (loadMoreBtn) {
         if (isMobile && products.length > 4 && productsToShow.length === 4) {
-            loadMoreBtn.style.display = 'block';
+            loadMoreBtn.innerHTML = `
+                Load More
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+            loadMoreBtn.style.display = 'flex';
+            loadMoreBtn.classList.remove('loading');
             showingAll = false;
         } else {
             loadMoreBtn.style.display = 'none';
@@ -355,16 +391,22 @@ if (menuTabs) {
 
 if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', () => {
-        const products = productsData[currentCategory];
-        productsGrid.innerHTML = '';
+        // Add loading animation
+        loadMoreBtn.classList.add('loading');
         
-        products.forEach(product => {
-            const productCard = createProductCard(product);
-            productsGrid.appendChild(productCard);
-        });
-        
-        loadMoreBtn.style.display = 'none';
-        showingAll = true;
+        setTimeout(() => {
+            const products = productsData[currentCategory];
+            productsGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = createProductCard(product);
+                productsGrid.appendChild(productCard);
+            });
+            
+            loadMoreBtn.style.display = 'none';
+            loadMoreBtn.classList.remove('loading');
+            showingAll = true;
+        }, 300);
     });
 }
 
