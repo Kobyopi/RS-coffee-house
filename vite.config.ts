@@ -20,9 +20,6 @@ export default defineConfig({
         registration: resolve(__dirname, 'coffee-house/registration.html'),
         cart: resolve(__dirname, 'coffee-house/cart.html')
       }
-    },
-    watch: {
-      buildDelay: 0
     }
   },
   server: {

@@ -17,7 +17,7 @@ export class LocalAuthService {
   }
 
   private static generateToken(): string {
-    return `token_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    return `token_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
   }
 
   private static getAllUsers(): StoredUser[] {
@@ -150,10 +150,3 @@ export class LocalAuthService {
     return null;
   }
 }
-
-
-
-
-
-
-
