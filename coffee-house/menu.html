@@ -21,6 +21,17 @@
                         <li class="nav-item"><a href="#footer" class="nav-link">Contact us</a></li>
                     </ul>
                 </nav>
+                <a href="cart.html" class="cart-link" style="display: none;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 2L7 7M7 7H3M7 7L6 22H18L17 7M17 7H21M17 7L15 2M10 11V17M14 11V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="cart-counter" style="display: none;">0</span>
+                </a>
+                <a href="#" class="logout-btn" style="display: none;" title="Logout">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M12 8h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
                 <a href="menu.html" class="header-menu-btn btn">
                     Menu
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -140,13 +151,14 @@
         <!-- Modal -->
         <div class="modal" id="productModal">
             <div class="modal-overlay"></div>
-            <div class="modal-content">
+            <div class="modal-wrapper">
                 <button class="modal-close" aria-label="Close modal">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
-                <div class="modal-product">
+                <div class="modal-content">
+                    <div class="modal-product">
                     <img src="assets/coffee-1.png" alt="" class="modal-img" id="modalImg">
                     <div class="modal-info">
                         <h3 class="modal-title" id="modalTitle">Product Details</h3>
@@ -206,9 +218,10 @@
                         <button class="modal-close-btn btn">Close</button>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
 
-        <script src="script.js"></script>
+        <script type="module" src="/src/pages/menu.ts"></script>
     </body>
 </html>
