@@ -2,6 +2,7 @@ import { apiService } from '../services/api';
 import { StorageService } from '../utils/storage';
 import { showLoader, hideLoader, showNotification } from '../utils/ui';
 import { initLogout, updateCartVisibility } from '../common';
+import { productImages } from '../utils/imageImports';
 import type { Product, CartItem } from '../types';
 
 // Mock product data (fallback if API fails)
@@ -14,7 +15,7 @@ const productsData: Record<string, Product[]> = {
       price: 7.00,
       discountPrice: 6.75,
       category: 'coffee',
-      image: './assets/coffee-1.jpg'
+      image: productImages[1]
     },
     {
       id: 2,
@@ -23,7 +24,7 @@ const productsData: Record<string, Product[]> = {
       price: 7.00,
       discountPrice: 6.75,
       category: 'coffee',
-      image: './assets/coffee-2.jpg'
+      image: productImages[2]
     },
     {
       id: 3,
@@ -32,7 +33,7 @@ const productsData: Record<string, Product[]> = {
       price: 5.50,
       discountPrice: 5.25,
       category: 'coffee',
-      image: './assets/coffee-3.jpg'
+      image: productImages[3]
     },
     {
       id: 4,
@@ -41,7 +42,7 @@ const productsData: Record<string, Product[]> = {
       price: 5.00,
       discountPrice: 4.75,
       category: 'coffee',
-      image: './assets/coffee-4.jpg'
+      image: productImages[4]
     },
     {
       id: 5,
@@ -50,7 +51,7 @@ const productsData: Record<string, Product[]> = {
       price: 4.50,
       discountPrice: 4.25,
       category: 'coffee',
-      image: './assets/coffee-5.jpg'
+      image: productImages[5]
     },
     {
       id: 6,
@@ -59,7 +60,7 @@ const productsData: Record<string, Product[]> = {
       price: 5.50,
       discountPrice: 5.25,
       category: 'coffee',
-      image: './assets/coffee-6.jpg'
+      image: productImages[6]
     },
     {
       id: 7,
@@ -68,7 +69,7 @@ const productsData: Record<string, Product[]> = {
       price: 5.50,
       discountPrice: 5.25,
       category: 'coffee',
-      image: './assets/coffee-7.jpg'
+      image: productImages[7]
     },
     {
       id: 8,
@@ -77,7 +78,7 @@ const productsData: Record<string, Product[]> = {
       price: 6.50,
       discountPrice: 6.25,
       category: 'coffee',
-      image: './assets/coffee-8.jpg'
+      image: productImages[8]
     }
   ],
   tea: [
@@ -88,7 +89,7 @@ const productsData: Record<string, Product[]> = {
       price: 4.50,
       discountPrice: 4.25,
       category: 'tea',
-      image: './assets/tea-1.png'
+      image: productImages[9]
     },
     {
       id: 10,
@@ -97,7 +98,7 @@ const productsData: Record<string, Product[]> = {
       price: 5.00,
       discountPrice: 4.75,
       category: 'tea',
-      image: './assets/tea-2.png'
+      image: productImages[10]
     },
     {
       id: 11,
@@ -106,7 +107,7 @@ const productsData: Record<string, Product[]> = {
       price: 5.00,
       discountPrice: 4.75,
       category: 'tea',
-      image: './assets/tea-3.png'
+      image: productImages[11]
     },
     {
       id: 12,
@@ -115,7 +116,7 @@ const productsData: Record<string, Product[]> = {
       price: 5.50,
       discountPrice: 5.25,
       category: 'tea',
-      image: './assets/tea-4.png'
+      image: productImages[12]
     }
   ],
   dessert: [
@@ -126,7 +127,7 @@ const productsData: Record<string, Product[]> = {
       price: 3.50,
       discountPrice: 3.25,
       category: 'dessert',
-      image: './assets/dessert-1.png'
+      image: productImages[13]
     },
     {
       id: 14,
@@ -135,7 +136,7 @@ const productsData: Record<string, Product[]> = {
       price: 4.00,
       discountPrice: 3.75,
       category: 'dessert',
-      image: './assets/dessert-2.png'
+      image: productImages[14]
     },
     {
       id: 15,
@@ -144,7 +145,7 @@ const productsData: Record<string, Product[]> = {
       price: 4.50,
       discountPrice: 4.25,
       category: 'dessert',
-      image: './assets/dessert-3.png'
+      image: productImages[15]
     },
     {
       id: 16,
@@ -153,7 +154,7 @@ const productsData: Record<string, Product[]> = {
       price: 4.00,
       discountPrice: 3.75,
       category: 'dessert',
-      image: './assets/dessert-4.png'
+      image: productImages[16]
     },
     {
       id: 17,
@@ -162,7 +163,7 @@ const productsData: Record<string, Product[]> = {
       price: 4.50,
       discountPrice: 4.25,
       category: 'dessert',
-      image: './assets/dessert-5.png'
+      image: productImages[17]
     },
     {
       id: 18,
@@ -171,7 +172,7 @@ const productsData: Record<string, Product[]> = {
       price: 4.50,
       discountPrice: 4.25,
       category: 'dessert',
-      image: './assets/dessert-6.png'
+      image: productImages[18]
     },
     {
       id: 19,
@@ -180,7 +181,7 @@ const productsData: Record<string, Product[]> = {
       price: 5.50,
       discountPrice: 5.25,
       category: 'dessert',
-      image: './assets/dessert-7.png'
+      image: productImages[19]
     },
     {
       id: 20,
@@ -189,7 +190,7 @@ const productsData: Record<string, Product[]> = {
       price: 6.50,
       discountPrice: 6.25,
       category: 'dessert',
-      image: './assets/dessert-8.png'
+      image: productImages[20]
     }
   ]
 };
