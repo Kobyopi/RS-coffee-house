@@ -3,11 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Coffee House</title>
+        <title>Coffee House - Registration</title>
         <link rel="icon" type="image/x-icon" href="./assets/logo-CBHcPCYA.png">
-      <script type="module" crossorigin src="./assets/main-CecsvLfg.js"></script>
+      <script type="module" crossorigin src="./assets/registration-BdUVSzhK.js"></script>
       <link rel="modulepreload" crossorigin href="./assets/storage-Bxw3izFL.js">
-      <link rel="modulepreload" crossorigin href="./assets/common-BLqNAuxj.js">
+      <link rel="modulepreload" crossorigin href="./assets/validation-C5_1G3Bt.js">
       <link rel="stylesheet" crossorigin href="./assets/storage-DSKwBezp.css">
     </head>
     <body>
@@ -18,23 +18,12 @@
                 </a>
                 <nav class="nav">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="#favorites" class="nav-link">Favorite coffee</a></li>
-                        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                        <li class="nav-item"><a href="#app" class="nav-link">Mobile app</a></li>
-                        <li class="nav-item"><a href="#footer" class="nav-link">Contact us</a></li>
+                        <li class="nav-item"><a href="index.html#favorites" class="nav-link">Favorite coffee</a></li>
+                        <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="index.html#app" class="nav-link">Mobile app</a></li>
+                        <li class="nav-item"><a href="index.html#footer" class="nav-link">Contact us</a></li>
                     </ul>
                 </nav>
-                <a href="cart.html" class="cart-link" style="display: none;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M9 2L7 7M7 7H3M7 7L6 22H18L17 7M17 7H21M17 7L15 2M10 11V17M14 11V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span class="cart-counter" style="display: none;">0</span>
-                </a>
-                <a href="#" class="logout-btn" style="display: none;" title="Logout">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M12 8h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
                 <a href="menu.html" class="header-menu-btn btn">
                     Menu
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,6 +33,11 @@
                         <path d="M13.333 9.16675H15.4163C16.5669 9.16675 17.4997 10.0995 17.4997 11.2501C17.4997 12.4007 16.5669 13.3334 15.4163 13.3334H14.1663" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </a>
+                <a href="cart.html" class="cart-link" style="display: none;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 2L7 7M7 7H3M7 7L6 22H18L17 7M17 7H21M17 7L15 2M10 11V17M14 11V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
                 <div class="burger-icon">
                     <span></span>
                     <span></span>
@@ -51,155 +45,123 @@
             </div>
             <div class="burger-menu">
                 <ul class="burger-list">
-                    <li class="burger-item"><a href="#favorites" class="burger-link">Favorite coffee</a></li>
-                    <li class="burger-item"><a href="#about" class="burger-link">About</a></li>
-                    <li class="burger-item"><a href="#app" class="burger-link">Mobile app</a></li>
-                    <li class="burger-item"><a href="#footer" class="burger-link">Contact us</a></li>
+                    <li class="burger-item"><a href="index.html#favorites" class="burger-link">Favorite coffee</a></li>
+                    <li class="burger-item"><a href="index.html#about" class="burger-link">About</a></li>
+                    <li class="burger-item"><a href="index.html#app" class="burger-link">Mobile app</a></li>
+                    <li class="burger-item"><a href="index.html#footer" class="burger-link">Contact us</a></li>
                     <li class="burger-item"><a href="menu.html" class="burger-link">Menu</a></li>
                 </ul>
             </div>
         </header>
 
         <main class="main">
-            <!-- Enjoy Hero Section -->
-            <section class="enjoy" id="enjoy">
-                <div class="container enjoy-container">
-                    <div class="enjoy-content">
-                        <h1 class="enjoy-title">
-                            <span class="enjoy-title-line1"><span class="enjoy-title-highlight">Enjoy</span> premium</span>
-                            <span class="enjoy-title-line2">coffee at our</span>
-                            <span class="enjoy-title-line3">charming cafe</span>
-                        </h1>
-                        <p class="enjoy-text">
-                            With its inviting atmosphere and delicious coffee options, the Coffee <br> House Resource is a popular destination for coffee lovers and those <br> seeking a warm and inviting space to enjoy their favorite beverage.
-                        </p>
-                        <a href="menu.html" class="hero-menu-btn btn">Menu
-                        </a>
-                    </div>
-                    <div class="enjoy-media">
-                        <video class="enjoy-video" autoplay muted loop playsinline>
-                            <source src="https://www.pexels.com/ru-ru/download/video/2909914/" type="video/mp4">
-                            <!-- Fallback image -->
-                            <img src="./assets/img-hero-PbtrYLs4.jpg" alt="Coffee" class="enjoy-img">
-                        </video>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Favorites Coffee Section-->
-            <section class="favorites" id="favorites">
-                <div class="container favorites-container">
-                    <h2 class="section-title">Choose your <span class="highlight">favorite</span> coffee</h2>
-
-                    <div class="carousel">
-                        <button class="carousel-btn carousel-btn-left" aria-label="Previous slide">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.5 7H1M1 7L7 1M1 7L7 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-
-                        <div class="carousel-wrapper">
-                            <div class="carousel-track">
-                                <div class="carousel-item">
-                                    <img src="./assets/coffee-slider-1-QcVRmBcb.png" alt="S'mores Frappuccino" class="carousel-item-img">
-                                    <h3 class="carousel-item-name">S'mores Frappuccino</h3>
-                                    <p class="carousel-item-description">
-                                        This new drink takes an espresso and mixes it with brown <br> sugar and cinnamon before being topped with oat milk.
-                                    </p>
-                                    <p class="carousel-item-price">$5.50</p>
+            <section class="auth-section">
+                <div class="container auth-container">
+                    <h1 class="auth-title"><span class="highlight">Registration</span></h1>
+                    
+                    <form class="auth-form registration-form" id="registrationForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="login" class="form-label">Login</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="login" name="login" class="form-input" autocomplete="username">
+                                    <svg class="input-icon error-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="display: none;">
+                                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="./assets/coffee-slider-2-Cu-Ndxkp.png" alt="Caramel Macchiato" class="carousel-item-img">
-                                    <h3 class="carousel-item-name">Caramel Macchiato</h3>
-                                    <p class="carousel-item-description">
-                                        Fragnant and unique classic espresso with rich caramel-peanut syrup, with cream under whipped thick foam.
-                                    </p>
-                                    <p class="carousel-item-price">$5.00</p>
+                                <span class="form-error" id="loginError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-wrapper">
+                                    <input type="password" id="password" name="password" class="form-input" autocomplete="new-password">
+                                    <svg class="input-icon error-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="display: none;">
+                                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="./assets/coffee-slider-3-CoM-uK_d.png" alt="Ice coffee" class="carousel-item-img">
-                                    <h3 class="carousel-item-name">Ice coffee</h3>
-                                    <p class="carousel-item-description">
-                                        A popular summer drink that tones and invigorates. Prepared from coffee, milk and ice.
-                                    </p>
-                                    <p class="carousel-item-price">$4.50</p>
-                                </div>
+                                <span class="form-error" id="passwordError"></span>
                             </div>
                         </div>
 
-                        <button class="carousel-btn carousel-btn-right" aria-label="Next slide">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                    </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <div class="input-wrapper">
+                                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" autocomplete="new-password">
+                                    <svg class="input-icon error-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="display: none;">
+                                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <span class="form-error" id="confirmPasswordError"></span>
+                            </div>
 
-                    <div class="carousel-indicators">
-                        <div class="indicator active" data-slide="0">
-                            <div class="indicator-progress"></div>
+                            <div class="form-group">
+                                <label for="city" class="form-label">City</label>
+                                <div class="input-wrapper">
+                                    <select id="city" name="city" class="form-select">
+                                        <option value="">Select a city</option>
+                                        <option value="New York">New York</option>
+                                        <option value="Los Angeles">Los Angeles</option>
+                                        <option value="Chicago">Chicago</option>
+                                    </select>
+                                </div>
+                                <span class="form-error" id="cityError"></span>
+                            </div>
                         </div>
-                        <div class="indicator" data-slide="1">
-                            <div class="indicator-progress"></div>
-                        </div>
-                        <div class="indicator" data-slide="2">
-                            <div class="indicator-progress"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!-- About Section -->  
-            <section class="about" id="about">
-                <div class="container about-container">
-                    <h2 class="section-title about-text">Resource is <span class="highlight"> the perfect and cozy place </span> where <br> you can enjoy a variety of hot beverages, relax, <br> catch up with friends, or get some work done.</h2>
-                    <div class="about-content">
-                        <div class="about-images">
-                            <img src="./assets/about-1-C6K78msC.jpg" alt="Smiling woman stirring her coffee at a table" class="about-img about-img1">
-                            <img src="./assets/about-3-B27zvB9K.jpg" alt="Bearded man drinking coffee while working on a laptop" class="about-img about-img2">
-                            <img src="./assets/about-2-CJSQPOR-.jpg" alt="Cup of coffee on a table decorated with small string lights" class="about-img about-img3">
-                            <img src="./assets/about-4-j3tQvjA_.jpg" alt="Happy couple enjoying coffee together at an outdoor" class="about-img about-img4">
-                        </div>
-                    </div>
-                </div>
-            </section>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="street" class="form-label">Street</label>
+                                <div class="input-wrapper">
+                                    <select id="street" name="street" class="form-select" disabled>
+                                        <option value="">Select a street</option>
+                                    </select>
+                                </div>
+                                <span class="form-error" id="streetError"></span>
+                            </div>
 
-            <!-- Mobile App Section-->
-            <section class="app" id="app">
-                <div class="container app-container">
-                    <div class="app-content">
-                        <h2 class="section-title app-title"><span class="highlight">Download</span> our apps <br> to start ordering
-                        </h2>
-                        <p class="app-description">
-                            Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are
+                            <div class="form-group">
+                                <label for="houseNumber" class="form-label">House Number</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="houseNumber" name="houseNumber" class="form-input" min="1">
+                                    <svg class="input-icon error-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="display: none;">
+                                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <span class="form-error" id="houseNumberError"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Payment Method</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="paymentMethod" value="cash" class="radio-input">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">Cash</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="paymentMethod" value="card" class="radio-input">
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-text">Card</span>
+                                </label>
+                            </div>
+                            <span class="form-error" id="paymentMethodError"></span>
+                        </div>
+
+                        <div class="form-error form-submit-error" id="submitError"></div>
+
+                        <button type="submit" class="btn form-submit-btn" id="submitBtn" disabled>Register</button>
+
+                        <p class="auth-switch">
+                            Already have an account? <a href="signin.html" class="auth-link">Sign In</a>
                         </p>
-                        <div class="app-buttons">
-                            <a href="#" class="app-link" aria-label="Download on App Store">
-                                <svg class="app-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                    <path d="M23.895 18.84C23.865 15.552 26.547 13.953 26.673 13.875C25.116 11.655 22.686 11.376 21.84 11.352C19.797 11.145 17.829 12.567 16.782 12.567C15.714 12.567 14.106 11.373 12.396 11.409C10.179 11.445 8.13 12.72 6.963 14.715C4.542 18.78 6.351 24.84 8.667 28.17C9.825 29.799 11.169 31.614 12.876 31.548C14.544 31.476 15.18 30.477 17.202 30.477C19.203 30.477 19.797 31.548 21.546 31.506C23.349 31.476 24.51 29.883 25.626 28.239C26.964 26.367 27.486 24.525 27.507 24.426C27.462 24.408 23.931 23.064 23.895 18.84Z" fill="currentColor"/>
-                                    <path d="M20.421 9.09C21.354 7.923 21.99 6.345 21.807 4.746C20.478 4.8 18.84 5.688 17.871 6.825C17.013 7.824 16.257 9.459 16.461 11.001C17.961 11.118 19.503 10.23 20.421 9.09Z" fill="currentColor"/> 
-                                </svg>
-                                <div class="app-link-text">
-                                    <span class="app-link-small">Available on the</span>
-                                    <span class="app-link-large">App Store</span>
-                                </div>
-                            </a>
-                            <a href="#" class="app-link" aria-label="Get it on Google Play">
-                                <svg class="app-icon" width="36" height="36" viewBox="0 0 36 36" fill="none">
-                                    <path d="M3.375 3.375L18.9 19.125L3.375 34.875C2.7 34.2 2.25 33.3 2.25 32.175V5.925C2.25 4.8 2.7 3.9 3.375 3.375Z" fill="currentColor"/>
-                                    <path d="M24.75 13.95L20.025 18.675L4.5 3.375C4.95 3.15 5.4 3.15 5.85 3.15C6.525 3.15 7.2 3.375 7.875 3.6L24.75 13.95Z" fill="currentColor"/>
-                                    <path d="M20.025 19.575L24.75 24.3L7.875 34.65C7.2 34.875 6.525 35.1 5.85 35.1C5.4 35.1 4.95 35.1 4.5 34.875L20.025 19.575Z" fill="currentColor"/>
-                                    <path d="M33.75 18.675C33.75 19.575 33.3 20.25 32.625 20.7L26.55 24.3L21.375 19.125L26.55 13.95L32.625 17.55C33.3 18 33.75 18.675 33.75 18.675Z" fill="currentColor"/>
-                                </svg>
-                                <div class="app-link-text">
-                                    <span class="app-link-small">Available on</span>
-                                    <span class="app-link-large">Google Play</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="app-image">
-                        <img src="./assets/mobile-screens-90CR4RhB.png" alt="Mobile app screens" class="app-img">
-                    </div>
+                    </form>
                 </div>
             </section>
         </main>
@@ -262,3 +224,6 @@
 
     </body>
 </html>
+
+
+
