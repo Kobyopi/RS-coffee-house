@@ -1,7 +1,7 @@
 import { apiService } from '../services/api';
 import { StorageService } from '../utils/storage';
 import { showNotification, updateCartCounter } from '../utils/ui';
-import { initLogout } from '../common';
+import { initLogout, initTheme, initThemeToggle, updateCartVisibility } from '../common';
 import type { ApiOrderRequest, ApiOrderItem, CartItem } from '../types';
 
 class CartPage {
@@ -17,7 +17,7 @@ class CartPage {
   private init(): void {
     this.initBurgerMenu();
     this.renderCart();
-    updateCartCounter(StorageService.getCartItemCount());
+    updateCartVisibility();
   }
 
   private initBurgerMenu(): void {
@@ -274,7 +274,9 @@ class CartPage {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   new CartPage();
   initLogout();
+  initThemeToggle();
 });
 

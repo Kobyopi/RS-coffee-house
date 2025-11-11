@@ -2,6 +2,7 @@ import { LocalAuthService } from '../services/localAuth';
 import { StorageService } from '../utils/storage';
 import { ValidationService } from '../utils/validation';
 import { showNotification } from '../utils/ui';
+import { initTheme, initThemeToggle } from '../common';
 import type { UserLogin } from '../types';
 
 class SignInPage {
@@ -230,7 +231,9 @@ class SignInPage {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   new SignInPage();
+  initThemeToggle();
 });
 
 

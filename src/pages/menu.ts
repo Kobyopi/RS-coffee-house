@@ -1,9 +1,9 @@
 import { apiService } from '../services/api';
 import { StorageService } from '../utils/storage';
-import { showLoader, hideLoader, showNotification } from '../utils/ui';
-import { initLogout, updateCartVisibility } from '../common';
+import { showLoader, hideLoader, showNotification, updateFavoriteIcon, updateFavoritesCounter } from '../utils/ui';
+import { initLogout, updateCartVisibility, initTheme, initThemeToggle } from '../common';
 import { productImages } from '../utils/imageImports';
-import type { Product, CartItem } from '../types';
+import type { Product, CartItem, FavoriteProduct } from '../types';
 
 // Mock product data (fallback if API fails)
 const productsData: Record<string, Product[]> = {
@@ -200,15 +200,18 @@ class MenuPage {
   private showingAll: boolean = true;
   private currentProduct: Product | null = null;
   private loadingCategory: string | null = null; // Track which category is currently loading
+  private showingFavorites: boolean = false;
 
   private productsGrid: HTMLElement | null;
   private loadMoreBtn: HTMLElement | null;
   private modal: HTMLElement | null;
+  private favoritesBtn: HTMLElement | null;
 
   constructor() {
     this.productsGrid = document.getElementById('productsGrid');
     this.loadMoreBtn = document.getElementById('loadMoreBtn');
     this.modal = document.getElementById('productModal');
+    this.favoritesBtn = document.getElementById('favoritesBtn');
     this.init();
   }
 
@@ -217,8 +220,10 @@ class MenuPage {
     this.initLoadMore();
     this.initModal();
     this.initResize();
+    this.initFavorites();
     this.renderProducts('coffee');
     updateCartVisibility();
+    this.updateFavoritesCounter();
   }
 
   private initMenuTabs(): void {
@@ -264,8 +269,17 @@ class MenuPage {
   private async renderProducts(category: string): Promise<void> {
     this.currentCategory = category;
     this.loadingCategory = category; // Mark this category as loading
+    this.showingFavorites = false; // Reset favorites view
     
     if (!this.productsGrid) return;
+
+    // Restore tabs and title when switching back from favorites
+    const menuTabs = document.querySelector('.menu-tabs') as HTMLElement;
+    if (menuTabs) menuTabs.style.display = 'flex';
+    const menuTitle = document.querySelector('.menu-title') as HTMLElement;
+    if (menuTitle) {
+      menuTitle.innerHTML = 'Behind each of our cups <br> hides an <span class="highlight">amazing surprise</span>';
+    }
 
     // Clear products grid and show loader in its place
     this.productsGrid.innerHTML = '';
@@ -343,7 +357,7 @@ class MenuPage {
     }
   }
 
-  private createProductCard(product: Product): HTMLElement {
+  private createProductCard(product: Product, isFavoriteView: boolean = false): HTMLElement {
     const card = document.createElement('div');
     card.className = 'product-card';
     
@@ -352,16 +366,46 @@ class MenuPage {
       ? `<p class="product-price"><span class="price-original">$${product.price.toFixed(2)}</span> <span class="price-discounted">$${product.discountPrice.toFixed(2)}</span></p>`
       : `<p class="product-price">$${product.price.toFixed(2)}</p>`;
 
+    const isFavorite = StorageService.isFavorite(product.id);
+    const heartIcon = isFavorite
+      ? `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`
+      : `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
     card.innerHTML = `
+      <button class="favorite-icon ${isFavorite ? 'active' : ''}" aria-label="Add to favorites">
+        ${heartIcon}
+      </button>
       <img src="${product.image}" alt="${product.name}" class="product-img">
       <div class="product-info">
         <h3 class="product-name">${product.name}</h3>
         <p class="product-description">${product.description}</p>
         ${priceHTML}
       </div>
+      ${isFavoriteView ? '<button class="quick-add-btn btn">Quick Add to Cart</button>' : ''}
     `;
 
-    card.addEventListener('click', () => {
+    // Handle favorite icon click
+    const favoriteIcon = card.querySelector('.favorite-icon');
+    favoriteIcon?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggleFavorite(product, favoriteIcon as HTMLElement);
+    });
+
+    // Handle quick add to cart for favorites view
+    if (isFavoriteView) {
+      const quickAddBtn = card.querySelector('.quick-add-btn');
+      quickAddBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.quickAddToCart(product);
+      });
+    }
+
+    // Handle card click to open modal
+    card.addEventListener('click', (e) => {
+      // Don't open modal if clicking on buttons
+      if ((e.target as HTMLElement).closest('.favorite-icon, .quick-add-btn')) {
+        return;
+      }
       this.openModal(product);
     });
 
@@ -655,11 +699,119 @@ class MenuPage {
     showNotification('Product added to cart!', 'success');
     this.closeModal();
   }
+
+  // Favorites methods
+  private initFavorites(): void {
+    if (this.favoritesBtn) {
+      this.favoritesBtn.addEventListener('click', () => {
+        this.toggleFavoritesView();
+      });
+    }
+  }
+
+  private toggleFavorite(product: Product, icon: HTMLElement): void {
+    const favoriteProduct: FavoriteProduct = {
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      discountPrice: product.discountPrice,
+      category: product.category,
+      image: product.image,
+    };
+
+    const isFavorite = StorageService.toggleFavorite(favoriteProduct);
+    updateFavoriteIcon(icon, isFavorite);
+    this.updateFavoritesCounter();
+
+    if (isFavorite) {
+      showNotification('Added to favorites!', 'success');
+    } else {
+      showNotification('Removed from favorites', 'success');
+      // If we're in favorites view and removed an item, refresh the view
+      if (this.showingFavorites) {
+        this.renderFavorites();
+      }
+    }
+  }
+
+  private quickAddToCart(product: Product): void {
+    const cartItem: CartItem = {
+      productId: product.id,
+      productName: product.name,
+      price: product.price,
+      discountPrice: product.discountPrice,
+      size: 'S', // Default size
+      sizePrice: 0,
+      additives: [],
+      image: product.image,
+      category: product.category,
+    };
+
+    StorageService.addToCart(cartItem);
+    updateCartVisibility();
+    showNotification('Product added to cart!', 'success');
+  }
+
+  private updateFavoritesCounter(): void {
+    const count = StorageService.getFavoritesCount();
+    updateFavoritesCounter(count);
+  }
+
+  private toggleFavoritesView(): void {
+    this.showingFavorites = !this.showingFavorites;
+
+    if (this.showingFavorites) {
+      this.renderFavorites();
+      this.favoritesBtn?.classList.add('active');
+    } else {
+      this.renderProducts(this.currentCategory);
+      this.favoritesBtn?.classList.remove('active');
+    }
+  }
+
+  private renderFavorites(): void {
+    if (!this.productsGrid) return;
+
+    const favorites = StorageService.getFavorites();
+
+    // Hide tabs and load more button when showing favorites
+    const menuTabs = document.querySelector('.menu-tabs') as HTMLElement;
+    if (menuTabs) menuTabs.style.display = 'none';
+    if (this.loadMoreBtn) this.loadMoreBtn.style.display = 'none';
+
+    // Update title
+    const menuTitle = document.querySelector('.menu-title') as HTMLElement;
+    if (menuTitle) {
+      menuTitle.innerHTML = 'Your <span class="highlight">Favorite Products</span>';
+    }
+
+    this.productsGrid.innerHTML = '';
+
+    if (favorites.length === 0) {
+      this.productsGrid.innerHTML = `
+        <div class="empty-favorites">
+          <svg width="100" height="100" viewBox="0 0 24 24" fill="none">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2>No favorites yet</h2>
+          <p>Start adding your favorite products by clicking the heart icon!</p>
+        </div>
+      `;
+    } else {
+      favorites.forEach((product) => {
+        const productCard = this.createProductCard(product, true);
+        this.productsGrid!.appendChild(productCard);
+      });
+    }
+  }
 }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   new MenuPage();
   initLogout();
+  initThemeToggle();
 });
 

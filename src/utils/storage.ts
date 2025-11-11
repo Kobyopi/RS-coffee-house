@@ -1,9 +1,11 @@
-import type { Cart, User, CartItem } from '../types';
+import type { Cart, User, CartItem, FavoriteProduct } from '../types';
 
 const STORAGE_KEYS = {
   CART: 'coffee_house_cart',
   USER: 'coffee_house_user',
   AUTH_TOKEN: 'authToken',
+  FAVORITES: 'coffee_house_favorites',
+  THEME: 'coffee_house_theme',
 } as const;
 
 export class StorageService {
@@ -111,6 +113,79 @@ export class StorageService {
 
   static logout(): void {
     this.clearUser();
+  }
+
+  // Favorites operations
+  static getFavorites(): FavoriteProduct[] {
+    const favoritesData = localStorage.getItem(STORAGE_KEYS.FAVORITES);
+    if (favoritesData) {
+      try {
+        return JSON.parse(favoritesData) as FavoriteProduct[];
+      } catch (error) {
+        console.error('Error parsing favorites data:', error);
+      }
+    }
+    return [];
+  }
+
+  static saveFavorites(favorites: FavoriteProduct[]): void {
+    localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(favorites));
+  }
+
+  static addToFavorites(product: FavoriteProduct): void {
+    const favorites = this.getFavorites();
+    // Check if already in favorites
+    if (!favorites.find(fav => fav.id === product.id)) {
+      favorites.push(product);
+      this.saveFavorites(favorites);
+    }
+  }
+
+  static removeFromFavorites(productId: number): void {
+    const favorites = this.getFavorites();
+    const updatedFavorites = favorites.filter(fav => fav.id !== productId);
+    this.saveFavorites(updatedFavorites);
+  }
+
+  static isFavorite(productId: number): boolean {
+    const favorites = this.getFavorites();
+    return favorites.some(fav => fav.id === productId);
+  }
+
+  static toggleFavorite(product: FavoriteProduct): boolean {
+    const isFav = this.isFavorite(product.id);
+    if (isFav) {
+      this.removeFromFavorites(product.id);
+      return false;
+    } else {
+      this.addToFavorites(product);
+      return true;
+    }
+  }
+
+  static getFavoritesCount(): number {
+    return this.getFavorites().length;
+  }
+
+  static clearFavorites(): void {
+    localStorage.removeItem(STORAGE_KEYS.FAVORITES);
+  }
+
+  // Theme operations
+  static getTheme(): 'light' | 'dark' {
+    const theme = localStorage.getItem(STORAGE_KEYS.THEME);
+    return theme === 'dark' ? 'dark' : 'light';
+  }
+
+  static setTheme(theme: 'light' | 'dark'): void {
+    localStorage.setItem(STORAGE_KEYS.THEME, theme);
+  }
+
+  static toggleTheme(): 'light' | 'dark' {
+    const currentTheme = this.getTheme();
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    this.setTheme(newTheme);
+    return newTheme;
   }
 }
 

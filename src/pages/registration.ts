@@ -2,6 +2,7 @@ import { LocalAuthService } from '../services/localAuth';
 import { StorageService } from '../utils/storage';
 import { ValidationService } from '../utils/validation';
 import { showNotification } from '../utils/ui';
+import { initTheme, initThemeToggle } from '../common';
 import type { ApiUserRegistration } from '../types';
 
 // Street data by city
@@ -417,7 +418,9 @@ class RegistrationPage {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   new RegistrationPage();
+  initThemeToggle();
 });
 
 

@@ -1,6 +1,6 @@
 import { apiService } from '../services/api';
 import { showLoader, hideLoader } from '../utils/ui';
-import { initLogout, updateCartVisibility } from '../common';
+import { initLogout, updateCartVisibility, initTheme, initThemeToggle } from '../common';
 import type { FavoriteProduct } from '../types';
 
 // Burger Menu
@@ -283,11 +283,13 @@ function initVideo(): void {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   initBurgerMenu();
   initSmoothScroll();
   initVideo();
   updateCartVisibility();
   initLogout();
+  initThemeToggle();
 
   // Load favorites from API
   const carousel = new Carousel();
