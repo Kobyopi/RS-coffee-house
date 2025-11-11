@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/Kobyopi/RS-coffee-house/issues"
   },
-  "homepage": "https://github.com/Kobyopi/RS-coffee-house#readme",
+  "homepage": "https://kobyopi.github.io/RS-coffee-house",
   "devDependencies": {
     "@types/node": "^24.9.1",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
