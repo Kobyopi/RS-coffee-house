@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Coffee House - Cart</title>
+        <link rel="icon" type="image/x-icon" href="assets/logo.png">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header class="header">
+            <div class="container header-container">
+                <a href="index.html" class="logo">
+                    <img src="assets/logo.png" alt="Coffee House" class="logo-img">
+                </a>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html#favorites" class="nav-link">Favorite coffee</a></li>
+                        <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="index.html#app" class="nav-link">Mobile app</a></li>
+                        <li class="nav-item"><a href="index.html#footer" class="nav-link">Contact us</a></li>
+                    </ul>
+                </nav>
+                <button class="theme-toggle" title="Switch theme" aria-label="Switch theme">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <a href="menu.html" id="favoritesBtn" class="favorites-btn" title="View Favorites" style="display: none;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="favorites-counter" style="display: none;">0</span>
+                </a>
+                <a href="cart.html" class="cart-link active">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 2L7 7M7 7H3M7 7L6 22H18L17 7M17 7H21M17 7L15 2M10 11V17M14 11V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="cart-counter" style="display: none;">0</span>
+                </a>
+                <a href="#" class="logout-btn" style="display: none;" title="Logout">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M12 8h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="menu.html" class="header-menu-btn btn">
+                    Menu
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.167 9.76667V11.6667C14.167 14.8883 11.5553 17.5 8.33366 17.5C5.112 17.5 2.50033 14.8883 2.50033 11.6667V9.76667C2.50033 9.4353 2.76896 9.16667 3.10033 9.16667H13.567C13.8984 9.16667 14.167 9.4353 14.167 9.76667Z" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10.0003 7.50008C10.0003 6.66675 10.5956 5.83341 11.786 5.83341C13.101 5.83341 14.167 4.76743 14.167 3.45246V2.91675" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6.66634 7.5V7.08333C6.66634 5.70262 7.78563 4.58333 9.16634 4.58333C10.0868 4.58333 10.833 3.83714 10.833 2.91667V2.5" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M13.333 9.16675H15.4163C16.5669 9.16675 17.4997 10.0995 17.4997 11.2501C17.4997 12.4007 16.5669 13.3334 15.4163 13.3334H14.1663" stroke="#403F3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <div class="burger-icon">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="burger-menu">
+                <ul class="burger-list">
+                    <li class="burger-item"><a href="index.html#favorites" class="burger-link">Favorite coffee</a></li>
+                    <li class="burger-item"><a href="index.html#about" class="burger-link">About</a></li>
+                    <li class="burger-item"><a href="index.html#app" class="burger-link">Mobile app</a></li>
+                    <li class="burger-item"><a href="index.html#footer" class="burger-link">Contact us</a></li>
+                    <li class="burger-item"><a href="menu.html" class="burger-link">Menu</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main class="main">
+            <section class="cart-section">
+                <div class="container cart-container">
+                    <h1 class="cart-title">Cart</h1>
+
+                    <div class="cart-content">
+                        <div class="cart-items" id="cartItems">
+                            <!-- Cart items will be rendered here -->
+                        </div>
+
+                        <div class="cart-summary" id="cartSummary">
+                            <!-- Cart summary will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer" id="footer">
+            <div class="footer-wrapper">
+                <div class="container">
+                    <div class="footer-inner">
+                        <div class="footer-content">
+                            <div class="footer-info">
+                                <h3 class="footer-title">Sip, Savor, Smile.<br><span class="footer-subtitle-italic">It's coffee time!</span></h3>
+                                <div class="footer-socials">
+                                    <a href="#" class="social-link" aria-label="Twitter" rel="noopener noreferrer">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="social-link" aria-label="Instagram" rel="noopener noreferrer">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                    <a href="#" class="social-link" aria-label="Facebook" rel="noopener noreferrer">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer-contacts">
+                                <h4 class="footer-subtitle">Contact us</h4>
+                                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="footer-link footer-address">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="footer-icon">
+                                        <path d="M17.5 8.333c0 5.834-7.5 10.834-7.5 10.834S2.5 14.167 2.5 8.333a7.5 7.5 0 0115 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10 10.833a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span>8558 Green Rd., LA</span>
+                                </a>
+                                <a href="tel:+16035550123" class="footer-link footer-phone">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="footer-icon">
+                                        <path d="M18.333 14.1v2.5a1.667 1.667 0 01-1.816 1.667 16.492 16.492 0 01-7.192-2.559 16.25 16.25 0 01-5-5 16.492 16.492 0 01-2.558-7.225A1.667 1.667 0 013.433 1.667h2.5a1.667 1.667 0 011.667 1.433c.105.8.3 1.587.583 2.35a1.667 1.667 0 01-.375 1.758l-1.058 1.059a13.333 13.333 0 005 5l1.058-1.059a1.667 1.667 0 011.759-.375c.762.284 1.549.478 2.35.584a1.667 1.667 0 011.433 1.691v-.008z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span>+1 (603) 555-0123</span>
+                                </a>
+                                <p class="footer-hours">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="footer-icon">
+                                        <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10 5v5l3.333 1.667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span>Mon-Sat: 9:00 AM – 23:00 PM</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script type="module" src="/src/pages/cart.ts"></script>
+    </body>
+</html>
+
+
+
